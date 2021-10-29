@@ -1,9 +1,6 @@
 name: Lint
 
 on:
-  push:
-    branches: [ main ]
-
   pull_request:
     branches: [ main ]
 
@@ -43,7 +40,7 @@ jobs:
 
   lint-dockerfile:
     runs-on: ubuntu-20.04
-    if: ${{ github.event_name == 'pull_request' }}
+    if: github.event_name == 'pull_request'
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
