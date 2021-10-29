@@ -15,7 +15,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Changed files
+      - name: Find changed dockerfiles
         id: changed-dockerfiles
         uses: tj-actions/changed-files@v11.3
         with:
@@ -23,7 +23,7 @@ jobs:
           files: |
             Dockerfile
 
-      - name: List all modified configs
+      - name: Setup matrix (for changed dockerfiles)
         id: matrix
         run: |
           CONFIG=""
@@ -34,7 +34,7 @@ jobs:
           done
           echo "::set-output name=config::[${CONFIG}]"
 
-  make-dockerimage:
+  make-docker-images:
     runs-on: ubuntu-20.04
     needs: prepare
     strategy:
