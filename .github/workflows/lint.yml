@@ -40,3 +40,33 @@ jobs:
 
       - name: Lint yaml files
         uses: ibiqlik/action-yamllint@v3.1.0
+
+  lint-dockerfile:
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Changed files
+        id: changed-dockerfiles
+        uses: tj-actions/changed-files@v11.3
+        with:
+          separator: ' '
+          files: |
+            Dockerfile
+
+      - name: Lint dockerfile (hadolint)
+        if: steps.changed-dockerfiles.outputs.any_changed
+        uses: hadolint/hadolint-action@v1.6.0
+        with:
+          dockerfile: Dockerfile
+          recursive: true
+
+      - name: Lint dockerfile (docker-lint)
+        if: steps.changed-dockerfiles.outputs.any_changed
+        uses: luke142367/Docker-Lint-Action@v1.1.1
+        with:
+          target: ${{ steps.changed-dockerfiles.outputs.all_modified_files }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
