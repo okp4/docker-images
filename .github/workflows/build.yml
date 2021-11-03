@@ -1,0 +1,60 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  prepare:
+    name: Create build matrix
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.config }}
+      any-changed: ${{ steps.changed-dockerfiles.outputs.any_changed }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Find changed dockerfiles
+        id: changed-dockerfiles
+        uses: tj-actions/changed-files@v11.3
+        with:
+          separator: ","
+          files: |
+            Dockerfile
+
+      - name: Setup matrix (for changed dockerfiles)
+        id: matrix
+        run: |
+          CONFIG=""
+          IFS=',' read -r -a DOCKERFILES <<< "${{ steps.changed-dockerfiles.outputs.all_modified_files }}"
+          for DOCKERFILE in "${DOCKERFILES[@]}"; do
+              echo "$DOCKERFILE"
+              CONFIG="${CONFIG:+${CONFIG}, }\"$(dirname ${DOCKERFILE})\""
+          done
+          echo "::set-output name=config::[${CONFIG}]"
+
+  make-docker-images:
+    runs-on: ubuntu-20.04
+    needs: prepare
+    strategy:
+      matrix:
+        context: ${{ fromJson(needs.prepare.outputs.matrix) }}
+      fail-fast: false
+    if: needs.prepare.outputs.any-changed
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Make docker image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          context: ${{ matrix.context }}
