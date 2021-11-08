@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  web:
+    image: gitlab.okp4.com:5050/okp4/generic/vtiger:v_okp4
+    ports:
+      - "8680:80"
+    depends_on:
+      - db
+    env_file:
+      - env
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./db/config/my.cnf:/etc/mysql/my.cnf
+    env_file:
+      - env
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   ports:
+  #     - "8583:80"
+  #   depends_on:
+  #     - db     
