@@ -15,6 +15,6 @@ RUN apt-get --no-install-recommends update && apt-get --no-install-recommends in
 RUN chown -R www-data:www-data /var/www/html
 
 # vtiger server
-RUN git clone --depth 1 --branch 7.4.0RC https://code.vtiger.com/vtiger/vtigercrm.git /var/www/html
-RUN rm -rf /var/www/html/.git
-RUN apt-get -y remove git
+RUN git clone --depth 1 --branch 7.4.0RC https://code.vtiger.com/vtiger/vtigercrm.git /var/www/html \
+    && rm -rf /var/www/html/.git \
+    && apt-get -y remove git
