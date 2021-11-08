@@ -9,12 +9,9 @@ RUN apt-get --no-install-recommends update && apt-get --no-install-recommends in
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mysqli \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
-    && docker-php-ext-install imap opcache zip\
-    && rm -rf /var/lib/apt/lists/*
-
-RUN chown -R www-data:www-data /var/www/html
-
-# vtiger server
-RUN git clone --depth 1 --branch 7.4.0RC https://code.vtiger.com/vtiger/vtigercrm.git /var/www/html \
+    && docker-php-ext-install imap opcache zip \
+    && rm -rf /var/lib/apt/lists/* \
+    && chown -R www-data:www-data /var/www/html \
+    && git clone --depth 1 --branch 7.4.0RC https://code.vtiger.com/vtiger/vtigercrm.git /var/www/html \
     && rm -rf /var/www/html/.git \
     && apt-get -y remove git
