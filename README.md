@@ -4,4 +4,5 @@
 
 [![build](https://github.com/okp4/docker-images/actions/workflows/build.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/build.yml)
 [![lint](https://github.com/okp4/docker-images/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/lint.yml)
+[![publish](https://github.com/okp4/docker-images/actions/workflows/publish.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/publish.yml)
 [![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
