@@ -35,6 +35,7 @@ jobs:
           echo "::set-output name=config::[${CONFIG}]"
 
   make-docker-images:
+    timeout-minutes: 10
     runs-on: ubuntu-20.04
     needs: prepare
     strategy:
