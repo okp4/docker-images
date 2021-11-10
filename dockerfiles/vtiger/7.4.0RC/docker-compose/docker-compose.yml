@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   web:
-    image: gitlab.okp4.com:5050/okp4/generic/vtiger:v_okp4
+    image: ghcr.io/okp4/vtiger:7.4.0rc
     ports:
       - "8680:80"
     depends_on:
