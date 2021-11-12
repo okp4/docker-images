@@ -9,8 +9,8 @@
 
 ## Purpose
 
-This repository contains various [Dockerfiles][dockerfiles] to build [Docker][docker] images we use [@okp4][okp4] and published to the Github
-Container Registry of our organization.
+This repository contains various [Dockerfiles][dockerfiles] to build [Docker][docker] images we use [@okp4][okp4] and published to the [Github
+Container Registry](https://github.com/orgs/okp4/packages) of our organization.
 
 ## Repository organization
 
