@@ -13,6 +13,7 @@ jobs:
       any-changed: ${{ steps.changed-dockerfiles.outputs.any_changed }}
       repository_owner: ${{ steps.environment.outputs.repository_owner }}
       date_stamp: ${{ steps.environment.outputs.date_stamp }}
+      date: ${{ steps.environment.outputs.date }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -80,10 +81,13 @@ jobs:
           context: ${{ matrix.context.path }}
           push: true
           tags: |
-             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.context.name }}:${{ matrix.context.version }}-${{ needs.prepare.outputs.date_stamp }}"
-             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.context.name }}:${{ matrix.context.version }}"
+            "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.context.name }}:${{ matrix.context.version }}-${{ needs.prepare.outputs.date_stamp }}"
+            "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.context.name }}:${{ matrix.context.version }}"
           labels: |
-             org.opencontainers.image.created=${{ needs.prepare.outputs.date_stamp }}
-             org.opencontainers.image.name=${{ matrix.context.name }}
-             org.opencontainers.image.revision=${{ github.sha }}
-             org.opencontainers.image.version=${{ matrix.context.version }}
+            org.opencontainers.image.created=${{ needs.prepare.outputs.date_stamp }}
+            org.opencontainers.image.name=${{ matrix.context.name }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ matrix.context.version }}
+            org.opencontainers.image.vendor=${{ needs.prepare.outputs.repository_owner }}
+            org.opencontainers.image.url=https://github.com/${{ github.repository }}/tree/main/dockerfiles/${{ matrix.context.name }}/${{ matrix.context.version }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}/tree/main/dockerfiles/${{ matrix.context.name }}/${{ matrix.context.version }}
