@@ -11,7 +11,7 @@ RUN apt-get --no-install-recommends update && apt-get --no-install-recommends in
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-install imap opcache zip \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone --depth 1 --branch 7.2.0 https://code.vtiger.com/vtiger/vtigercrm.git /var/www/html \
-    && chown -R www-data:www-data /var/www/html \
-    && rm -rf /var/www/html/.git \
+    && git clone --depth 1 --branch 7.2.0 https://code.vtiger.com/vtiger/vtigercrm.git /tmp/vtiger \
+    && chown -R www-data:www-data /tmp/vtiger \
+    && rm -rf /tmp/vtiger/.git \
     && apt-get -y remove git
