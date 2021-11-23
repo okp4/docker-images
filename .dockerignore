@@ -1,4 +1,7 @@
 *.md
+*.yaml
 .github/
+.git
+.gitignore
 LICENSE
 CODE-OF-CONDUCT.md
