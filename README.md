@@ -27,6 +27,12 @@ The different dockerfiles are under the `dockerfiles` folder.
 └── <etc.>
 ```
 
+## License
+
+The project is licensed under the `BSD-3-Clause License` which you can find in file [LICENSE.md](LICENSE).
+
+Software components inside the image built by this project are under the respective licenses chosen by their respective copyright holders.
+
 [dockerfiles]: https://docs.docker.com/engine/reference/builder/
 [docker]: https://www.docker.com/what-docker
 [okp4]: http://okp4.com
