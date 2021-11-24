@@ -20,6 +20,7 @@ RUN \
  && rm -rf /var/lib/apt/lists/*                             \
  && rm /etc/apt/sources.list.d/debian-unstable.list
 
+# add user
 RUN useradd -ms /bin/bash latex             \
  && chown -R latex /usr/local/share/texmf   \
  && chown -R latex /var/lib/texmf
