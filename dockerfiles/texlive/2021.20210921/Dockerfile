@@ -35,11 +35,14 @@ RUN \
       arsclassica       \
       bera              \
       booktabs          \
+      ccicons           \
+      csquotes          \
       classicthesis     \
       doclicense        \
       draftwatermark    \
       enumitem          \
       eulervm           \
+      ifmtarg           \
       lipsum            \
       listings          \
       microtype         \
@@ -49,7 +52,9 @@ RUN \
       tocloft           \
       todonotes         \
       xcolor            \
-      xpatch
+      xifthen           \
+      xpatch            \
+      xstring
 
 WORKDIR /home/latex/source
 
