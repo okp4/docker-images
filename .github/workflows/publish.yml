@@ -75,7 +75,7 @@ jobs:
           username: ${{ secrets.DOCKER_REGISTRY_ID }}
           password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
 
-      - name: Log into GitHub Container Registry
+      - name: Log into Docker Hub
         uses: docker/login-action@v1
         with:
           username: okp4
