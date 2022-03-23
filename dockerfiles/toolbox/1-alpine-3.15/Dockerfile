@@ -16,3 +16,5 @@ RUN `#-- well known tools` \
     `#-- kubectl` \
     && wget --progress=dot:giga https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubectl -O /usr/bin/kubectl \
     && chmod +x /usr/bin/kubectl
+
+COPY --from=fullstorydev/grpcurl:v1.8.6 /bin/grpcurl /bin/grpcurl
