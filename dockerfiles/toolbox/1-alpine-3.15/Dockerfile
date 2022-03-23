@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.15.2
 
 RUN `#-- well known tools` \
     && apk add --update --no-cache \
@@ -9,7 +9,7 @@ RUN `#-- well known tools` \
         gettext=0.21-r0 \
         jq=1.6-r1 \
         net-tools=1.60_git20140218-r2 \
-        openssl=1.1.1l-r8 \
+        openssl=1.1.1n-r0 \
         tar=1.34-r0 \
         wget=1.21.2-r2 \
         yq=4.14.1-r0 \
