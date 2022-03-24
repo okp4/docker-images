@@ -4,4 +4,4 @@
 
 ## Tools included
 
-The image provides the following tools: `bash`, `busybox-extras`, `coreutils`, `curl`, `gettext`, `jq`, `net-tools`, `openssl`, `tar`, `wget`, `yq`.
+The image provides the following tools: `bash`, `busybox-extras`, `coreutils`, `curl`, `gettext`, `grpcurl`, `jq`, `net-tools`, `openssl`, `tar`, `wget`, `yq`.
