@@ -5,6 +5,9 @@ updates:
     schedule:
       interval: "daily"
     reviewers:
-      - "okp4/maintainers"
+      - ad2ien
+      - amimart
+      - ccamel
     assignees:
-      - "okp4/maintainers"
+      - amimart
+      - ccamel
