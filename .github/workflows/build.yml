@@ -24,7 +24,7 @@ jobs:
         with:
           separator: ","
           files: |
-            Dockerfile
+            **/Dockerfile
 
       - name: Setup environment
         id: environment

@@ -51,7 +51,7 @@ jobs:
         with:
           separator: ' '
           files: |
-            Dockerfile
+            **/Dockerfile
 
       - name: Lint dockerfile (hadolint)
         if: steps.changed-dockerfiles.outputs.any_changed == 'true'
