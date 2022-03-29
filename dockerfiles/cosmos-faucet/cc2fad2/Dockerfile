@@ -3,7 +3,7 @@ FROM node:16-alpine3.15 AS BUILD_IMAGE
 
 WORKDIR /usr/src/build-app
 
-RUN apk add git
+RUN apk add --no-cache git=2.34.1-r0
 
 RUN git clone https://github.com/BitCannaCommunity/cosmos-faucet.git . && \
     git reset --hard cc2fad2d1a2d1e2aea6d9fcf30311af864704d7a && \
