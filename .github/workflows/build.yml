@@ -68,7 +68,7 @@ jobs:
 
       - name: Make docker image
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ${{ matrix.context.path }}
           push: false
