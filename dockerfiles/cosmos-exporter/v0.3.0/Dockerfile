@@ -5,4 +5,3 @@ RUN wget -q https://github.com/solarlabsteam/cosmos-exporter/releases/download/v
     tar -zxvf - -C /usr/bin
 
 ENTRYPOINT [ "cosmos-exporter" ]
-CMD [ "--denom", "uknow" ]
