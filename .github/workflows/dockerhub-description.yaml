@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   prepare:
     runs-on: ubuntu-20.04
@@ -11,28 +11,28 @@ jobs:
       matrix: ${{ steps.matrix.outputs.config }}
       any-changed: ${{ steps.changed-readmes.outputs.any_changed }}
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Find changed readme files
-      id: changed-readmes
-      uses: tj-actions/changed-files@v24
-      with:
-        separator: ","
-        files: |
-          **/README.md
+      - name: Find changed readme files
+        id: changed-readmes
+        uses: tj-actions/changed-files@v24
+        with:
+          separator: ","
+          files: |
+            **/README.md
 
-    - name: Setup matrix (for changed readmes)
-      id: matrix
-      run: |
-        CONFIG=""
-        ALL_MODIFIED_FILES=${{ steps.changed-readmes.outputs.all_modified_files }}
-        IFS=',' read -r -a READMES <<< $ALL_MODIFIED_FILES
-        for README in ${READMES[@]}; do
-          REPO=$(basename $(dirname ${README}))
-          CONFIG="${CONFIG:+${CONFIG}, }{\"repo\": \"${REPO}\", \"path\": \"${README}\"}"
-        done
-        echo "::set-output name=config::[${CONFIG}]"
+      - name: Setup matrix (for changed readmes)
+        id: matrix
+        run: |
+          CONFIG=""
+          ALL_MODIFIED_FILES=${{ steps.changed-readmes.outputs.all_modified_files }}
+          IFS=',' read -r -a READMES <<< $ALL_MODIFIED_FILES
+          for README in ${READMES[@]}; do
+            REPO=$(basename $(dirname ${README}))
+            CONFIG="${CONFIG:+${CONFIG}, }{\"repo\": \"${REPO}\", \"path\": \"${README}\"}"
+          done
+          echo "::set-output name=config::[${CONFIG}]"
 
   set-decription:
     timeout-minutes: 10
@@ -44,13 +44,13 @@ jobs:
       fail-fast: false
     if: needs.prepare.outputs.any-changed == 'true'
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Docker Hub Description
-      uses: peter-evans/dockerhub-description@v3
-      with:
-        username: okp4
-        password: ${{ secrets.DOCKER_HUB_REGISTRY_TOKEN }}
-        repository: okp4/${{ matrix.context.repo }}
-        readme-filepath: ${{ matrix.context.path }}
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: okp4
+          password: ${{ secrets.DOCKER_HUB_REGISTRY_TOKEN }}
+          repository: okp4/${{ matrix.context.repo }}
+          readme-filepath: ${{ matrix.context.path }}
