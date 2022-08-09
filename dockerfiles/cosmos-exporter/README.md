@@ -5,10 +5,12 @@ It queries nodes to extract informations concerning validators and wallets.
 
 # Common configuration args
 
---node blockchain grpc address <br />
---tendermint-rpc tendermint <br />
---denom crypto-currency <br />
---bech-prefix <br />
+
+- `--node` The gRPC node URL. Defaults to `localhost:9090`
+- `--tendermint-rpc` Tendermint RPC URL to query node stats. Defaults to `http://localhost:26657`
+- `--denom` The blockchain currency. Defaults to `uxprt`
+- `--bech-prefix` the global prefixes for addresses. Defaults to `persistence`
+
 
 Do not forget to open port 9300 to let prometheus scrape the exporter.
 
@@ -34,5 +36,6 @@ containers:
         - name: cosmos-metrics
           containerPort: 9300
 ```
-Based on the following project, you can find an exhaustive configuration list here : <https://github.com/solarlabsteam/cosmos-exporter> 
-Here you can find the Dockerfile we coded based on the project: <>
+Based on the following project, you can find an exhaustive configuration list here : <https://github.com/solarlabsteam/cosmos-exporter>
+
+Here you can find the Dockerfile we coded based on the project: <https://github.com/okp4/docker-images/blob/main/dockerfiles/cosmos-exporter/v0.3.0/Dockerfile>
