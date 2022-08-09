@@ -1,8 +1,7 @@
 name: Update Docker Hub Description
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   prepare:
@@ -13,6 +12,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Find changed readme files
         id: changed-readmes
