@@ -23,7 +23,7 @@ jobs:
           files: |
             **/README.md
 
-      - name: Setup matrix (for changed readmes)
+      - name: Build iterable readmes info
         id: matrix
         run: |
           CONFIG=""
@@ -35,7 +35,7 @@ jobs:
           done
           echo "::set-output name=config::[${CONFIG}]"
 
-  set-decription:
+  update-dockerhub-readme:
     timeout-minutes: 10
     runs-on: ubuntu-20.04
     needs: prepare
