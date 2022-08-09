@@ -17,7 +17,7 @@ jobs:
 
       - name: Find changed readme files
         id: changed-readmes
-        uses: tj-actions/changed-files@v24
+        uses: tj-actions/changed-files@v25
         with:
           separator: ","
           files: |
