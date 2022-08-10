@@ -1,7 +1,8 @@
 # Cosmos-Exporter
 
 An exporter used to get cosmos based blockchain metrics from a runnning node.
-It queries a node to extract informations concerning: 
+It queries a node to extract informations concerning:
+
 - The blockchain network in general
 - Some specific validators and wallets.
 
