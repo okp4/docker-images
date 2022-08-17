@@ -7,11 +7,13 @@ See: <https://plantuml.com/>
 ## Usage
 
 ```bash
-echo "@startuml\nAlice -> Bob: Hello plantuml\!\n@enduml" | docker run --rm -i ghcr.io/okp4/plantuml > sequence.svg
+echo "@startuml\nAlice -> Bob: Hello plantuml\!\n@enduml" | docker run --rm -i okp4/plantuml > sequence.svg
 ```
 
 By default, the output type is `SVG`, but it can be changed:
 
 ```bash
-echo "@startuml\nAlice -> Bob: Hello plantuml\!\n@enduml" | docker run --rm -i ghcr.io/okp4/plantuml -tpng > sequence.png
+echo "@startuml\nAlice -> Bob: Hello plantuml\!\n@enduml" | docker run --rm -i okp4/plantuml -tpng > sequence.png
 ```
+
+This image is made with ❤️ from here: <https://github.com/okp4/docker-images/tree/main/dockerfiles/plantuml>

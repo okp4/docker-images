@@ -1,14 +1,7 @@
 # GDAL-Python docker image
 
-Python 3.9 and latest version of GDAL compiled and importable for Python apps.
+> GDAL is necessary for the manipulation of geospatial data, and more specifically, to use the python geopandas library.
 
-GDAL is necessary for the manipulation of geospatial data, in particular to be
-able to use the python geopandas library.
+This image is meant to be a support for python/geopanda applications that require Python 3.9 and latest version of GDAL.
 
-## Usage
-
-### Build
-
-```bash
-docker build -t  gdal-python . 
-```
+Made with ❤️ from here: <https://github.com/okp4/docker-images/tree/main/dockerfiles/gdal-python>
