@@ -78,7 +78,7 @@ jobs:
       - name: Log into Docker Hub
         uses: docker/login-action@v2
         with:
-          username: okp4
+          username: ${{ secrets.DOCKER_HUB_REGISTRY_ID }}
           password: ${{ secrets.DOCKER_HUB_REGISTRY_TOKEN }}
 
       - name: Build and push
