@@ -49,6 +49,37 @@ jobs:
           done
           echo "::set-output name=config::[${CONFIG}]"
 
+  prepare-readmes:
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.config }}
+      any-changed: ${{ steps.changed-readmes.outputs.any_changed }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Find changed readme files
+        id: changed-readmes
+        uses: tj-actions/changed-files@v25
+        with:
+          separator: ","
+          files: |
+            ./dockerfiles/**/README.md
+
+      - name: Build iterable readmes info
+        id: matrix
+        run: |
+          CONFIG=""
+          ALL_MODIFIED_FILES=${{ steps.changed-readmes.outputs.all_modified_files }}
+          IFS=',' read -r -a READMES <<< $ALL_MODIFIED_FILES
+          for README in ${READMES[@]}; do
+            REPO=$(basename $(dirname ${README}))
+            CONFIG="${CONFIG:+${CONFIG}, }{\"repo\": \"${REPO}\", \"path\": \"${README}\"}"
+          done
+          echo "::set-output name=config::[${CONFIG}]"
+
   publish-docker-images:
     timeout-minutes: 10
     runs-on: ubuntu-20.04
@@ -99,3 +130,24 @@ jobs:
             org.opencontainers.image.vendor=${{ needs.prepare.outputs.repository_owner }}
             org.opencontainers.image.url=https://github.com/${{ github.repository }}/tree/main/dockerfiles/${{ matrix.context.name }}/${{ matrix.context.version }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}/tree/main/dockerfiles/${{ matrix.context.name }}/${{ matrix.context.version }}
+
+  update-dockerhub-readme:
+    timeout-minutes: 10
+    runs-on: ubuntu-20.04
+    needs: prepare-readmes
+    strategy:
+      matrix:
+        context: ${{ fromJson(needs.prepare-readmes.outputs.matrix) }}
+      fail-fast: false
+    if: needs.prepare-readmes.outputs.any-changed == 'true'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: okp4
+          password: ${{ secrets.DOCKER_HUB_REGISTRY_TOKEN }}
+          repository: okp4/${{ matrix.context.repo }}
+          readme-filepath: ${{ matrix.context.path }}
