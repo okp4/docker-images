@@ -147,7 +147,7 @@ jobs:
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
-          username: okp4
+          username: ${{ secrets.DOCKER_HUB_REGISTRY_ID }}
           password: ${{ secrets.DOCKER_HUB_REGISTRY_TOKEN }}
           repository: okp4/${{ matrix.context.repo }}
           readme-filepath: ${{ matrix.context.path }}
