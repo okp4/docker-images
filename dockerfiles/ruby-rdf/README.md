@@ -56,4 +56,6 @@ docker run -ti --rm \
   okp4/ruby-rdf:3.1.15 serialize --output-format jsonld -o my-ontology.json my-ontology.ttl
 ```
 
-This image is made with ❤️ from here: <https://github.com/okp4/docker-images/tree/main/dockerfiles/ruby-rdf>
+**Dockerfile :** <https://github.com/okp4/docker-images/tree/main/dockerfiles/ruby-rdf>
+
+Made with ❤️ [by OKP4](https://okp4.network).
