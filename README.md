@@ -28,6 +28,13 @@ The different dockerfiles are under the `dockerfiles` folder.
 └── <etc.>
 ```
 
+## You want to submit a Dockerfile? 😍
+
+Any contribution is very welcome. Make sure you commit your Dockerfile in the path that matches `./dockerfiles/$PROJECT/$VERSION` alongside with a `README.md` that will be used as dockerhub description. Also, please, check out OKP4 health files :
+
+- [Contributing](https://github.com/okp4/.github/blob/main/CONTRIBUTING.md)
+- [Code of conduct](https://github.com/okp4/.github/blob/main/CODE_OF_CONDUCT.md)
+
 ## License
 
 The project is licensed under the `BSD-3-Clause License` which you can find in file [LICENSE.md](LICENSE).
