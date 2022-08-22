@@ -2,10 +2,11 @@
 
 > 🐳 Repository for [Docker](https://www.docker.com/what-docker) configurations and images we use at [@okp4][okp4].
 
-[![build](https://github.com/okp4/docker-images/actions/workflows/build.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/build.yml)
-[![lint](https://github.com/okp4/docker-images/actions/workflows/lint.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/lint.yml)
-[![publish](https://github.com/okp4/docker-images/actions/workflows/publish.yml/badge.svg)](https://github.com/okp4/docker-images/actions/workflows/publish.yml)
-[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+![lint](https://img.shields.io/github/workflow/status/okp4/docker-images/Lint?label=lint&style=for-the-badge&logo=github)
+![build](https://img.shields.io/github/workflow/status/okp4/docker-images/Build?label=build&style=for-the-badge&logo=github)
+![publish](https://img.shields.io/github/workflow/status/okp4/docker-images/Publish?label=publish&style=for-the-badge&logo=github)
+[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?logo=conventionalcommits&style=for-the-badge)](https://conventionalcommits.org)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg?style=for-the-badge)](https://opensource.org/licenses/BSD-3-Clause)
 
 ## Purpose
 
