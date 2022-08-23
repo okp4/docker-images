@@ -4,4 +4,6 @@
 
 This image is meant to be a support for python/geopanda applications that require Python 3.9 and latest version of GDAL.
 
-Made with ❤️ from here: <https://github.com/okp4/docker-images/tree/main/dockerfiles/gdal-python>
+**Dockerfile :** <https://github.com/okp4/docker-images/tree/main/dockerfiles/gdal-python>
+
+Made with ❤️ [by OKP4](https://okp4.network).

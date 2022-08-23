@@ -16,4 +16,6 @@ By default, the output type is `SVG`, but it can be changed:
 echo "@startuml\nAlice -> Bob: Hello plantuml\!\n@enduml" | docker run --rm -i okp4/plantuml -tpng > sequence.png
 ```
 
-This image is made with ❤️ from here: <https://github.com/okp4/docker-images/tree/main/dockerfiles/plantuml>
+**Dockerfile :** <https://github.com/okp4/docker-images/tree/main/dockerfiles/plantuml>
+
+Made with ❤️ [by OKP4](https://okp4.network).
