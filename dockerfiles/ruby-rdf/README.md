@@ -35,7 +35,7 @@ The dockerfile simply exposes the [rdf](https://github.com/ruby-rdf/rdf#command-
 docker run -ti --rm \
   -v `pwd`:/usr/src/ontology \
   -w /usr/src/ontology \
-  okp4/ruby-rdf:3.1.15 --help
+  okp4/ruby-rdf:3.2.29 --help
 ```
 
 **Validate ontology `my-ontology.ttl`:**
@@ -44,7 +44,7 @@ docker run -ti --rm \
 docker run -ti --rm \
   -v `pwd`:/usr/src/ontology \
   -w /usr/src/ontology \
-  okp4/ruby-rdf:3.1.15 validate --validate my-ontology.ttl
+  okp4/ruby-rdf:3.2.29 validate --validate my-ontology.ttl
 ```
 
 **Convert `my-ontology.ttl` to `jsonld` format:**
@@ -53,7 +53,7 @@ docker run -ti --rm \
 docker run -ti --rm \
   -v `pwd`:/usr/src/ontology \
   -w /usr/src/ontology \
-  okp4/ruby-rdf:3.1.15 serialize --output-format jsonld -o my-ontology.json my-ontology.ttl
+  okp4/ruby-rdf:3.2.29 serialize --output-format jsonld -o my-ontology.json my-ontology.ttl
 ```
 
 **Dockerfile :** <https://github.com/okp4/docker-images/tree/main/dockerfiles/ruby-rdf>
