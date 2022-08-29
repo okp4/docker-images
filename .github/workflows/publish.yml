@@ -51,6 +51,8 @@ jobs:
 
   prepare-readmes:
     runs-on: ubuntu-20.04
+    needs: prepare
+    if: ${{ !failure() }}
     outputs:
       matrix: ${{ steps.matrix.outputs.config }}
       any-changed: ${{ steps.changed-readmes.outputs.any_changed }}
