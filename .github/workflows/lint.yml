@@ -48,7 +48,7 @@ jobs:
 
       - name: Changed files
         id: changed-dockerfiles
-        uses: tj-actions/changed-files@v29.0.7
+        uses: tj-actions/changed-files@v29.0.9
         with:
           separator: " "
           files: |
