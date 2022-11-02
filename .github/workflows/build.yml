@@ -3,6 +3,8 @@ name: Build
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [ci/update_ci_workflows]    
 
 jobs:
   prepare:
@@ -29,9 +31,9 @@ jobs:
       - name: Setup environment
         id: environment
         run: |
-          echo "::set-output name=repository_owner::$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
-          echo "::set-output name=date_stamp::$(date +'%Y%m%d')"
-          echo "::set-output name=date::$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          echo "repository_owner=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "date_stamp=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+          echo "date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
 
       - name: Setup matrix (for changed dockerfiles)
         id: matrix
@@ -45,7 +47,8 @@ jobs:
               NAME=$(basename $(dirname $APATH))
               CONFIG="${CONFIG:+${CONFIG}, }{\"path\": \"${APATH}\", \"version\": \"${VERSION}\", \"name\": \"${NAME}\"}"
           done
-          echo "::set-output name=config::[${CONFIG}]"
+          echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
+  
 
   make-docker-images:
     timeout-minutes: 10
