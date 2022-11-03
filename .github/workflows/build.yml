@@ -3,13 +3,11 @@ name: Build
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [ci/update_ci_workflows]    
 
 jobs:
   prepare:
     name: Create build matrix
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.matrix.outputs.config }}
       any-changed: ${{ steps.changed-dockerfiles.outputs.any_changed }}
@@ -48,11 +46,10 @@ jobs:
               CONFIG="${CONFIG:+${CONFIG}, }{\"path\": \"${APATH}\", \"version\": \"${VERSION}\", \"name\": \"${NAME}\"}"
           done
           echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
-  
 
   make-docker-images:
     timeout-minutes: 10
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare
     strategy:
       matrix:

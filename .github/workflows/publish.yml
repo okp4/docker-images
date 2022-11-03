@@ -7,7 +7,7 @@ on:
 jobs:
   prepare:
     name: Create build matrix
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.matrix.outputs.config }}
       any-changed: ${{ steps.changed-dockerfiles.outputs.any_changed }}
@@ -50,7 +50,7 @@ jobs:
           echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
 
   prepare-readmes:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare
     if: ${{ !failure() }}
     outputs:
@@ -84,7 +84,7 @@ jobs:
 
   publish-docker-images:
     timeout-minutes: 10
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare
     strategy:
       matrix:
@@ -135,7 +135,7 @@ jobs:
 
   update-dockerhub-readme:
     timeout-minutes: 10
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare-readmes
     strategy:
       matrix:
