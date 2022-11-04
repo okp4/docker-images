@@ -7,7 +7,7 @@ on:
 jobs:
   prepare:
     name: Create build matrix
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.matrix.outputs.config }}
       any-changed: ${{ steps.changed-dockerfiles.outputs.any_changed }}
@@ -31,9 +31,9 @@ jobs:
       - name: Setup environment
         id: environment
         run: |
-          echo "::set-output name=repository_owner::$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
-          echo "::set-output name=date_stamp::$(date +'%Y%m%d')"
-          echo "::set-output name=date::$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          echo "repository_owner=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "date_stamp=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+          echo "date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
 
       - name: Setup matrix (for changed dockerfiles)
         id: matrix
@@ -47,10 +47,10 @@ jobs:
               NAME=$(basename $(dirname $APATH))
               CONFIG="${CONFIG:+${CONFIG}, }{\"path\": \"${APATH}\", \"version\": \"${VERSION}\", \"name\": \"${NAME}\"}"
           done
-          echo "::set-output name=config::[${CONFIG}]"
+          echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
 
   prepare-readmes:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare
     if: ${{ !failure() }}
     outputs:
@@ -80,11 +80,11 @@ jobs:
             REPO=$(basename $(dirname ${README}))
             CONFIG="${CONFIG:+${CONFIG}, }{\"repo\": \"${REPO}\", \"path\": \"${README}\"}"
           done
-          echo "::set-output name=config::[${CONFIG}]"
+          echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
 
   publish-docker-images:
     timeout-minutes: 10
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare
     strategy:
       matrix:
@@ -135,7 +135,7 @@ jobs:
 
   update-dockerhub-readme:
     timeout-minutes: 10
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: prepare-readmes
     strategy:
       matrix:
