@@ -56,7 +56,7 @@ jobs:
 
       - name: Lint dockerfile (hadolint)
         if: steps.changed-dockerfiles.outputs.any_changed == 'true'
-        uses: hadolint/hadolint-action@v2.1.0
+        uses: hadolint/hadolint-action@v3.0.0
         with:
           dockerfile: Dockerfile
           recursive: true
