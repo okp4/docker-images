@@ -22,7 +22,7 @@ jobs:
 
       - name: Find changed dockerfiles
         id: changed-dockerfiles
-        uses: tj-actions/changed-files@v34.6.1
+        uses: tj-actions/changed-files@v35.2.1
         with:
           separator: ","
           files: |
@@ -64,7 +64,7 @@ jobs:
 
       - name: Find changed readme files
         id: changed-readmes
-        uses: tj-actions/changed-files@v34.6.1
+        uses: tj-actions/changed-files@v35.2.1
         with:
           separator: ","
           files: |
