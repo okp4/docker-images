@@ -11,9 +11,11 @@ RUN go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@latest &&
   go install google.golang.org/protobuf/cmd/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION}
 
 # install all gogo protobuf binaries
-RUN git clone https://github.com/cosmos/gogoproto.git && \
-  cd gogoproto && \
-  git checkout v${GOGOPROTO_VERSION} && \
+RUN git clone https://github.com/cosmos/gogoproto.git
+
+WORKDIR gogoproto
+
+RUN git checkout v${GOGOPROTO_VERSION} && \
   go mod download && \
   make install
 
