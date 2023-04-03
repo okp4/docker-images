@@ -60,6 +60,7 @@ jobs:
         with:
           dockerfile: Dockerfile
           recursive: true
+          verbose: true
 
       - name: Lint dockerfile (docker-lint)
         if: steps.changed-dockerfiles.outputs.any_changed == 'true'
