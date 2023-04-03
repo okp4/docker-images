@@ -13,7 +13,7 @@ RUN go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@latest &&
 # install all gogo protobuf binaries
 RUN git clone https://github.com/cosmos/gogoproto.git
 
-WORKDIR gogoproto
+WORKDIR /go/gogoproto
 
 RUN git checkout v${GOGOPROTO_VERSION} && \
   go mod download && \
