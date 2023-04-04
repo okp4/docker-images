@@ -43,7 +43,8 @@ jobs:
               APATH=$(dirname ${DOCKERFILE})
               VERSION=$(basename ${APATH})
               NAME=$(basename $(dirname $APATH))
-              CONFIG="${CONFIG:+${CONFIG}, }{\"path\": \"${APATH}\", \"version\": \"${VERSION}\", \"name\": \"${NAME}\"}"
+              PLATFORMS=$(cat ${APATH}/.platforms || echo "linux/amd64")
+              CONFIG="${CONFIG:+${CONFIG}, }{\"path\": \"${APATH}\", \"version\": \"${VERSION}\", \"name\": \"${NAME}\", \"platforms\": \"${PLATFORMS}\"}"
           done
           echo "config=[${CONFIG}]" >> $GITHUB_OUTPUT
 
@@ -71,6 +72,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ${{ matrix.context.path }}
+          platforms: ${{ matrix.context.platforms }}
           push: false
           tags: |
             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.context.name }}:${{ matrix.context.version }}-${{ needs.prepare.outputs.date_stamp }}"
