@@ -10,7 +10,6 @@ ENV GOGOPROTO_VERSION=1.4.7
 RUN go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@latest && \
   go install google.golang.org/protobuf/cmd/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION}
 
-# install all gogo protobuf binaries
 RUN git clone https://github.com/cosmos/gogoproto.git
 
 WORKDIR /go/gogoproto
