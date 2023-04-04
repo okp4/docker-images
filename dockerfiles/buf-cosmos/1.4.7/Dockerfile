@@ -7,7 +7,7 @@ RUN apk update \
 ENV GOLANG_PROTOBUF_VERSION=1.28.1
 ENV GOGOPROTO_VERSION=1.4.7
 
-RUN go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@latest && \
+RUN go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@760914ff5b20d0420b15c6ce66be8c8808ae40c2 && \
   go install google.golang.org/protobuf/cmd/protoc-gen-go@v${GOLANG_PROTOBUF_VERSION}
 
 RUN git clone https://github.com/cosmos/gogoproto.git
