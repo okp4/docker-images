@@ -20,7 +20,7 @@ jobs:
 
       - name: Find changed dockerfiles
         id: changed-dockerfiles
-        uses: tj-actions/changed-files@v35.9.2
+        uses: tj-actions/changed-files@v38.1.3
         with:
           separator: ","
           files: |
