@@ -16,7 +16,7 @@ jobs:
       date: ${{ steps.environment.outputs.date }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Find changed dockerfiles
         id: changed-dockerfiles
@@ -59,7 +59,7 @@ jobs:
     if: needs.prepare.outputs.any-changed == 'true'
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
