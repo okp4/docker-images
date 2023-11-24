@@ -25,6 +25,7 @@ jobs:
           separator: ","
           files: |
             **/Dockerfile
+            **/.platforms
 
       - name: Setup environment
         id: environment
